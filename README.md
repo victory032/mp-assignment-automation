@@ -14,4 +14,6 @@
 
 ### This project is for education purposes only
 
+I will provide documentation on my journey to solve this project. For those of you who are interested or maybe an expert (know how to solve any problems related to this project), you can open issues in this repo and I will appreciate any of your information.
+
 ### You can view my progress in [here!](https://sesar-d.notion.site/PROGRESS-PAGE-2bc38597b2c9460b88b7c41cbfab4ecb)
