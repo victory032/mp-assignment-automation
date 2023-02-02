@@ -1,2 +1,4 @@
 # to store api keys
 .env 
+__pycache__
+first-result.txt

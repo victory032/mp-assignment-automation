@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-CLIENT = os.getenv('CLIENT')
-CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+API_KEY = os.getenv('API_KEY')
 
-print(CLIENT, CLIENT_SECRET)
+def getKeys():
+  return API_KEY
