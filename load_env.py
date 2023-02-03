@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv('API_KEY')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-def getKeys():
-  return API_KEY
+def get_key():
+  return OPENAI_API_KEY

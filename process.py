@@ -2,7 +2,7 @@ import load_env as e
 
 import openai
 
-API_KEY =  e.getKeys()
+API_KEY =  e.get_key()
 
 openai.api_key = API_KEY
 
