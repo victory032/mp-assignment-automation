@@ -12,7 +12,7 @@ Act as an expert in the topic and provide insightful and detailed responses to q
 """
 
 DESIGN_PROMPT_2 = f"""
-Provide me short and related insight between keywords: 
+Provide me detailed and related insight between keywords: 
 """
 
 keywords = key_gen.get_keywords()
