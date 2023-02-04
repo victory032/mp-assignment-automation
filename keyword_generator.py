@@ -5,8 +5,8 @@ from nltk.stem import WordNetLemmatizer
 
 from collections import Counter
 
-nltk.download('stopwords')
-nltk.download('wordnet')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
 
 def read_pdf():
   """This function will read the input from the source (pdf/image/text)
