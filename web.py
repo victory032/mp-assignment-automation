@@ -24,7 +24,7 @@ if genre == 'PDF':
     # pdf input section
     pdf = st.file_uploader(label="Upload your assignment PDF here.", type=['pdf'])
 
-    if pdf is not None:
+    if pdf != None:
         # function read pdf
         text = read(pdf)
         res = solve(text[0])
@@ -37,7 +37,7 @@ else:
     # text input section    
     text_input = st.text_area("Copy and paste your assignment's question here.")
     
-    if text_input is not '':
+    if text_input != '':
         res = solve(text_input)
 
 if res != '':

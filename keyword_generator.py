@@ -10,16 +10,6 @@ import read_pdf_pypdf as r
 # nltk.download('stopwords')
 # nltk.download('wordnet')
 
-def read_pdf():
-  """This function will read the input from the source (pdf/image/text)
-
-  Returns:
-      str: text
-  """
-  # return "China's panda and Australia's koala are two animals that arent predator, pandas eat bamboo and koala's eat eucalyptus leaves. Therefore, they are harmless. They are both different from pythons because pythons are potentialy dangerous considering they can swallow an entire alligator you could conceivably have pythons shacking upto the Potomac"
-  
-  return r.read_pdf()
-
 def preprocess_text(text):
 	"""This function will do a preprocessing of the text input
 
