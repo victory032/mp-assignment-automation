@@ -5,8 +5,17 @@ import keyword_generator as key_gen
 openai.api_key = e.OPENAI_API_KEY
 
 def solve(text):
+  """This function is used to solve the question and sent request to openai api
+
+  Args:
+      text (str): raw text input
+
+  Returns:
+      [result (str), keywords (list)]: The result contains response from openai api and keywords is a list containing keywords that is used in the prompt parameter api
+  """  
   
-  keywords = key_gen.get_keywords(text)
+  # keywords = key_gen.get_keywords(text)
+  keywords = key_gen.get_keywords(text, True)
   
   DESIGN_PROMPT_2 = f"""
   Provide me detailed and related insight between keywords: 
@@ -30,4 +39,4 @@ def solve(text):
   
   result = response['choices'][0]['text']
   
-  return result
+  return result, keywords
