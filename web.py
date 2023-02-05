@@ -1,6 +1,6 @@
 import streamlit as st
 
-from read_pdf_pypdf import read
+import input
 from process import solve
 
 st.title('Assignment Insight')
@@ -19,6 +19,7 @@ genre = st.radio(
     ('PDF', 'Image', 'Text'))
 
 res = ''
+keywords = None
 
 if genre == 'PDF':
     # pdf input section
@@ -26,20 +27,31 @@ if genre == 'PDF':
 
     if pdf != None:
         # function read pdf
-        text = read(pdf)
-        res = solve(text[0])
+        text = input.read_pdf(pdf)
+        
+        st.write(text)
+        
+        res, keywords = solve(text[0])
     
 elif genre == 'Image':
     st.write('I\'m sorry, this feature is still on development.')
     
+    img = st.file_uploader(label="Upload your assignment image here.", type=['jpeg, jpg, png'])
+
+    if img != None:
+        pass
 
 else:
     # text input section    
     text_input = st.text_area("Copy and paste your assignment's question here.")
     
     if text_input != '':
-        res = solve(text_input)
+        res, keywords = solve(text_input)
 
-if res != '':
+# insight section
+if res != '' and keywords != None:
     st.markdown('### Insights 🌟')
     st.write(res)
+    
+    st.markdown('#### Generated Keywords')
+    st.write(str(keywords))
