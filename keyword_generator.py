@@ -40,13 +40,15 @@ def preprocess_text(text):
     
 	return p_text
 
-def get_keywords():
+def get_keywords(text):
   """This function will be used to get the keywords from the preprocessed text
+
+  Args:
+      text (str): preprocessed text
 
   Returns:
       list: top 5 keywords from the text input
   """
-  text = read_pdf() 
   text = preprocess_text(text)
   term_frequencies = Counter(text.split())
   potential_words = term_frequencies.most_common()[:5]

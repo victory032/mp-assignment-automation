@@ -11,25 +11,51 @@ Act as an expert in the topic and provide insightful and detailed responses to q
 
 """
 
-DESIGN_PROMPT_2 = f"""
-Provide me detailed and related insight between keywords: 
-"""
+# DESIGN_PROMPT_2 = f"""
+# Provide me detailed and related insight between keywords: 
+# """
 
-keywords = key_gen.get_keywords()
+# keywords = key_gen.get_keywords()
 
-prompt = f"""
-The keywords are:
-{keywords}
-"""
+# prompt = f"""
+# The keywords are:
+# {keywords}
+# """
 
-prompt2 = str(keywords)
+# prompt2 = str(keywords)
 
-# final_prompt = DESIGN_PROMPT + prompt
-final_prompt = DESIGN_PROMPT_2 + prompt2
+# # final_prompt = DESIGN_PROMPT + prompt
+# final_prompt = DESIGN_PROMPT_2 + prompt2
 
-print('final prompt: ', final_prompt)
+# print('final prompt: ', final_prompt)
 
-response = openai.Completion.create(
+# response = openai.Completion.create(
+#   model="text-davinci-003",
+#   prompt=final_prompt,
+#   temperature=0.3,
+#   max_tokens=512,
+#   top_p=1,
+#   frequency_penalty=0.5,
+#   presence_penalty=0
+# )
+
+# print(response)
+
+def solve(text):
+  
+  keywords = key_gen.get_keywords(text)
+  
+  DESIGN_PROMPT_2 = f"""
+  Provide me detailed and related insight between keywords: 
+  """
+  prompt2 = f"""
+  The keywords are:
+  {keywords}
+  """
+  
+  final_prompt = DESIGN_PROMPT_2 + prompt2
+  
+  response = openai.Completion.create(
   model="text-davinci-003",
   prompt=final_prompt,
   temperature=0.3,
@@ -37,6 +63,8 @@ response = openai.Completion.create(
   top_p=1,
   frequency_penalty=0.5,
   presence_penalty=0
-)
-
-print(response)
+  )
+  
+  result = response['choices'][0]['text']
+  
+  return result
