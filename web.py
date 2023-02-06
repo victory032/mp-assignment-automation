@@ -16,8 +16,21 @@ st.markdown('## Upload Section')
 
 genre = st.radio(
     "Choose your assignment file type",
-    ('PDF', 'Image', 'Text'))
+    ('PDF', 'Image', 'Text'), horizontal=True)
 
+lang = st.radio(
+    "Choose your language input",
+    ('English', 'Indonesia'), horizontal=True)
+
+if lang != '':
+    if lang == 'English':
+        lang = 'en'
+    else:
+        lang = 'in'
+
+# topic = st.text_input('Add Topic', placeholder='')
+
+# Process Section
 res = ''
 keywords = None
 
@@ -28,30 +41,33 @@ if genre == 'PDF':
 
     if pdf != None:
         # function read pdf
-        text = input.read_pdf(pdf)
-
-        st.write(text)
-
-        res, keywords = solve(text[0])
+        text_list = input.read_pdf(pdf)
+        text = ''.join(str(e+'\n') for e in text_list)
+        text_input = st.text_area("Parsed Text", value=text, height=400)
+        res, keywords = solve(text_input)
 
 elif genre == 'Image':
-    st.write('I\'m sorry, this feature is still on development.')
-
     img = st.file_uploader(
-        label="Upload your assignment image here.", type=['jpeg, jpg, png'])
+        label="Upload your assignment image here.", type=['jpeg', 'jpg', 'png'])
 
     if img != None:
-        pass
+        img_val = img.getvalue()
+        st.write('Your Image')
+        st.image(image=img_val)
+        text_list = input.read_image(img_val)
+        text = ''.join(str(e+'\n') for e in text_list)
+        text_input = st.text_area("Parsed Text", value=text, height=400)
+        res, keywords = solve(text_input)
 
 else:
     # text input section
     text_input = st.text_area(
-        "Copy and paste your assignment's question here.")
+        "Copy and paste your assignment's question here.", height=400)
 
     if text_input != '':
         res, keywords = solve(text_input)
 
-# insight section
+# insight/output section
 if res != '' and keywords != None:
     st.markdown('### Insights 🌟')
     st.write(res)
