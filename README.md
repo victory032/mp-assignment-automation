@@ -1,5 +1,11 @@
 # Assignment Automation
 
+Basically this is a free homework solver.
+
+Assignment Automation is a student project designed to demonstrate the power of AI technology in generating answers and insights. It should not be relied upon for daily use as the results may not always be accurate or complete. This website serves as a learning tool, allowing students and aspiring tech enthusiasts to explore the capabilities of AI and gain a deeper understanding of how it can be used to process information. Whether you're a student or just curious about AI, Assignment Automation provides an exciting opportunity to see the technology in action and discover new possibilities.
+
+**Note: The generated output may not be correct. Use at your own risk ⚠️.**
+
 ## Outline of the program
 
 ![outline](docs/img/outline.png)

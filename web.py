@@ -3,12 +3,15 @@ import streamlit as st
 import input
 from process import solve
 
-st.title('Assignment Insight')
+st.title('Assignment Automation')
 
 # intro section
 st.markdown('## Introduction')
-st.write('this is introduction section')
+st.write("""
+Assignment Automation offers answers to complex questions, saving users time and effort. You just need to input your question in pdf, image, or texts format and it will provide you a brief insights about the question.
 
+Note: **This project is for educational purposes only and the generated output may not be correct. Use at your own risk ⚠️.**
+""")
 
 # upload section
 st.markdown('## Upload Section')
