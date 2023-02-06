@@ -5,7 +5,6 @@ from process import solve
 
 st.title('Assignment Insight')
 
-
 # intro section
 st.markdown('## Introduction')
 st.write('this is introduction section')
@@ -65,7 +64,11 @@ else:
 
 # Run Process
 if st.button('Solve Question!') and text_input != '':
-    res, keywords = solve(text_input)
+    with st.spinner('Processing...'):
+        res, keywords = solve(text_input)
+    st.success('Done!')
+
+st.write('---')
 
 # insight/output section
 if res != '' and keywords != None:
