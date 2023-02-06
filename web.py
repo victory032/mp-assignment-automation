@@ -64,8 +64,7 @@ else:
 
 # Run Process
 if st.button('Solve Question!') and text_input != '':
-    with st.spinner('Processing...'):
-        res, keywords = solve(text_input)
+    res, keywords = solve(text_input)
     st.success('Done!')
 
 st.write('---')
