@@ -16,10 +16,10 @@ def preprocess_text(text):
     """This function will do a preprocessing of the text input
 
     Args:
-                    str: text input to preprocess (unpreprocessed text)
+        str: text input to preprocess (unpreprocessed text)
 
     Returns:
-                    str: preprocessed text
+        str: preprocessed text
     """
     stopwords = nltk.corpus.stopwords.words('english')
     lemmatizer = WordNetLemmatizer()
