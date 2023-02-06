@@ -2,7 +2,7 @@ import load_env as e
 
 import openai
 
-API_KEY =  e.get_key()
+API_KEY = e.get_key()
 
 openai.api_key = API_KEY
 
@@ -24,13 +24,13 @@ Tweet sentiment ratings:
 # "1. Negatif\n2. Negatif\n3. Positif\n4. Positif\n5. Negatif"
 
 response = openai.Completion.create(
-  model="text-davinci-003",
-  prompt=prompt,
-  temperature=0,
-  max_tokens=60,
-  top_p=1,
-  frequency_penalty=0.5,
-  presence_penalty=0
+    model="text-davinci-003",
+    prompt=prompt,
+    temperature=0,
+    max_tokens=60,
+    top_p=1,
+    frequency_penalty=0.5,
+    presence_penalty=0
 )
 
 print(response)
