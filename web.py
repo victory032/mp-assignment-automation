@@ -30,9 +30,10 @@ if lang != '':
 
 # topic = st.text_input('Add Topic', placeholder='')
 
-# Process Section
+# Select Input -> Parse Section
 res = ''
 keywords = None
+text_input = ''
 
 if genre == 'PDF':
     # pdf input section
@@ -43,8 +44,7 @@ if genre == 'PDF':
         # function read pdf
         text_list = input.read_pdf(pdf)
         text = ''.join(str(e+'\n') for e in text_list)
-        text_input = st.text_area("Parsed Text", value=text, height=400)
-        res, keywords = solve(text_input)
+        text_input = st.text_area("Your Question", value=text, height=400)
 
 elif genre == 'Image':
     img = st.file_uploader(
@@ -56,16 +56,16 @@ elif genre == 'Image':
         st.image(image=img_val)
         text_list = input.read_image(img_val)
         text = ''.join(str(e+'\n') for e in text_list)
-        text_input = st.text_area("Parsed Text", value=text, height=400)
-        res, keywords = solve(text_input)
+        text_input = st.text_area("Your Question", value=text, height=400)
 
 else:
     # text input section
     text_input = st.text_area(
         "Copy and paste your assignment's question here.", height=400)
 
-    if text_input != '':
-        res, keywords = solve(text_input)
+# Run Process
+if st.button('Solve Question!') and text_input != '':
+    res, keywords = solve(text_input)
 
 # insight/output section
 if res != '' and keywords != None:
