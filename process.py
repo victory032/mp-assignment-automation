@@ -1,10 +1,12 @@
 import load_env as e
 import openai
 import keyword_generator as key_gen
+import streamlit as st
 
 openai.api_key = e.OPENAI_API_KEY
 
 
+@st.cache
 def solve(text):
     """This function is used to solve the question and sent request to openai api
 
