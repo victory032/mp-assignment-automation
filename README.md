@@ -12,11 +12,14 @@ Assignment Automation is a student project designed to demonstrate the power of 
 
 ## Technical Outline
 
-- Use Optical Character Recognition (OCR) software to convert the PDF or image documents into text. (PDF Text-based/Image only for now)
-- Extract the text from the PDF with ~~PyPDF~~, OCRmyPDF, EasyOCR
+![outline](docs/img/technical_outline.png)
+
+- Use Optical Character Recognition (OCR) software to convert the PDF or image documents into text. (PDF Text-based/Image/Text available)
+- Extract the text from the PDF/Image with PyPDF (PDF) / EasyOCR (Image)
 - Do text processing on the extracted text
-- Process the question with chatgpt api (if possible)
-- Provide an answer in pdf format
+- Process the question with chatgpt api or term frequency to find the keywords
+- Request insight with API from the keywords
+- Provide an answer in text format from the response
 
 ### This project is for education purposes only
 

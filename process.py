@@ -7,16 +7,15 @@ openai.api_key = e.OPENAI_API_KEY
 
 
 @st.cache
-def solve(text):
+def solve(text: str) -> list[str, list]:
     """This function is used to solve the question and sent request to openai api
 
     Args:
         text (str): raw text input
 
     Returns:
-        [result (str), keywords (list)]: The result contains response from openai api and keywords is a list containing keywords that is used in the prompt parameter api
+        list[str, list]: The result contains response from openai api and keywords is a list containing keywords that is used in the prompt parameter api
     """
-
     # keywords = key_gen.get_keywords(text)
     keywords = key_gen.get_keywords(text, True)
 

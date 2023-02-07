@@ -2,8 +2,11 @@
 import re
 import nltk
 from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
 from collections import Counter
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
+import string
 import load_env as e
 import openai
 openai.api_key = e.OPENAI_API_KEY
@@ -12,34 +15,52 @@ openai.api_key = e.OPENAI_API_KEY
 # nltk.download('wordnet')
 
 
-def preprocess_text(text):
+def preprocess_text(text: str, lang: str = 'en') -> str:
     """This function will do a preprocessing of the text input
 
     Args:
-        str: text input to preprocess (unpreprocessed text)
+        text (str): text input to preprocess (unpreprocessed text)
+        lang (str, optional): Choose language to process the text input. 
+        Available languages: 'id','en'. Defaults to 'en'.
 
     Returns:
         str: preprocessed text
     """
-    stopwords = nltk.corpus.stopwords.words('english')
-    lemmatizer = WordNetLemmatizer()
 
-    p_text = re.sub('[^a-zA-Z]', ' ', text)
-    p_text = p_text.lower()
-    p_text = p_text.split()
-    p_text = [lemmatizer.lemmatize(word)
-              for word in p_text if not word in set(stopwords)]
-    p_text = ' '.join(p_text)
+    if lang == 'en':
+        stopwords = nltk.corpus.stopwords.words('english')
+        lemmatizer = WordNetLemmatizer()
+
+        p_text = re.sub('[^a-zA-Z]', ' ', text)
+        p_text = p_text.lower()
+        p_text = p_text.split()
+        p_text = [lemmatizer.lemmatize(word)
+                  for word in p_text if not word in set(stopwords)]
+        p_text = ' '.join(p_text)
+    elif lang == 'id':
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+        p_text = text.translate(str.maketrans(
+            '', '', string.punctuation)).lower()
+        tokens = word_tokenize(p_text)
+        list_stopwords = set(nltk.corpus.stopwords.words('indonesian'))
+        removed = []
+        for t in tokens:
+            if t not in list_stopwords:
+                removed.append(t)
+        p_text = ' '.join(removed)
+        p_text = stemmer.stem(p_text)
 
     return p_text
 
 
-def get_keywords(text, api=False):
+def get_keywords(text: str, api: bool = False, lang: str = 'en') -> list:
     """This function will be used to get the keywords from the preprocessed text
 
     Args:
-        text (str): preprocessed text
+        text (str): raw text | unpreprocessed text
         api (bool, optional): If the parameter is set to True, it will generate keywords with api api. Defaults to False.
+        lang (str, optional): Language to do preprocessing of the text input. Defaults to False.
 
     Returns:
         list: top 5 keywords from the text input
@@ -61,7 +82,7 @@ def get_keywords(text, api=False):
         keywords = response['choices'][0]['text']
 
     else:
-        text = preprocess_text(text)
+        text = preprocess_text(text, lang)
         term_frequencies = Counter(text.split())
         potential_words = term_frequencies.most_common()[:5]
 

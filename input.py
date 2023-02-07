@@ -5,7 +5,15 @@ import streamlit as st
 from pypdf import PdfReader
 
 
-def read_pdf(pdf):
+def read_pdf(pdf: object) -> list:
+    """This function is used to read pdf and parse the text
+
+    Args:
+        pdf (object): PDF file/path
+
+    Returns:
+        list: list of parsed text from the pdf input
+    """
     reader = PdfReader(pdf)
     number_of_pages = len(reader.pages)
     text_list = []
@@ -16,8 +24,18 @@ def read_pdf(pdf):
     return text_list
 # HOELIT FINAL EXAM 2022   1. Write an essay of 850-1500 words.  2. You need at least 4 (four) reliable sources. Write all your references in References section. Cite your sources properly.  3. In your essay, you need to discuss a writer (or more)/ a literary work (or more)/ a literary movement that we have discussed throughout this semester. You may discuss the characteristics, the contribution they have made, the values/ criticism they contain, etc. Below are some sample topics for your essay: a. Shakespeare and his contribution to English language and literature, b. Stream of consciousness as a literary breakthrough in twentieth century English literature, c. Social criticism in Charles Dicken’s works.  4. Provide a title and write your essay in paragraphs. Your essay must have the introduction, body (discussion), and the conclusion. 5. Use the provided template.  6. Submit your essay to the LMS no later than 24 December 2022 (early submission is always welcome).  7. If you want to discuss your plan for the essay, feel free to contact me.  8. Plagiarism might result in score reduction or test failure.
 
+
 @st.cache
-def read_image(imgpath, lang=['id', 'en']):
+def read_image(imgpath: object, lang: list = ['id', 'en']) -> list:
+    """This function is used to read image and parse the text
+
+    Args:
+        imgpath (object): img file | opencv | img path
+        lang (list, optional): Language of the image input. Defaults to ['id', 'en'].
+
+    Returns:
+        list: list of parsed text from the image input
+    """
     reader = easyocr.Reader(lang)
     text_list = reader.readtext(imgpath, detail=0, paragraph=True)
     return text_list
