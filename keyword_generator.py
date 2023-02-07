@@ -15,11 +15,13 @@ openai.api_key = e.OPENAI_API_KEY
 # nltk.download('wordnet')
 
 
-def preprocess_text(text, lang='en'):
+def preprocess_text(text: str, lang: str = 'en') -> str:
     """This function will do a preprocessing of the text input
 
     Args:
-        str: text input to preprocess (unpreprocessed text)
+        text (str): text input to preprocess (unpreprocessed text)
+        lang (str, optional): Choose language to process the text input. 
+        Available languages: 'id','en'. Defaults to 'en'.
 
     Returns:
         str: preprocessed text
@@ -52,12 +54,13 @@ def preprocess_text(text, lang='en'):
     return p_text
 
 
-def get_keywords(text, api=False):
+def get_keywords(text: str, api: bool = False, lang: str = 'en') -> list:
     """This function will be used to get the keywords from the preprocessed text
 
     Args:
-        text (str): preprocessed text
+        text (str): raw text | unpreprocessed text
         api (bool, optional): If the parameter is set to True, it will generate keywords with api api. Defaults to False.
+        lang (str, optional): Language to do preprocessing of the text input. Defaults to False.
 
     Returns:
         list: top 5 keywords from the text input
@@ -79,7 +82,7 @@ def get_keywords(text, api=False):
         keywords = response['choices'][0]['text']
 
     else:
-        text = preprocess_text(text)
+        text = preprocess_text(text, lang)
         term_frequencies = Counter(text.split())
         potential_words = term_frequencies.most_common()[:5]
 
@@ -89,8 +92,3 @@ def get_keywords(text, api=False):
         # print(keywords)
 
     return str(keywords)
-
-
-text = "Andi kerap melakukan transaksi rutin secara daring atau online. Menurut Andi belanja online lebih praktis & murah."
-p_text = preprocess_text(text, 'id')
-print(p_text)
