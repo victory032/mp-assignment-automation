@@ -2,8 +2,11 @@
 import re
 import nltk
 from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
 from collections import Counter
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
+import string
 import load_env as e
 import openai
 openai.api_key = e.OPENAI_API_KEY
@@ -12,7 +15,7 @@ openai.api_key = e.OPENAI_API_KEY
 # nltk.download('wordnet')
 
 
-def preprocess_text(text):
+def preprocess_text(text, lang='en'):
     """This function will do a preprocessing of the text input
 
     Args:
@@ -21,15 +24,30 @@ def preprocess_text(text):
     Returns:
         str: preprocessed text
     """
-    stopwords = nltk.corpus.stopwords.words('english')
-    lemmatizer = WordNetLemmatizer()
 
-    p_text = re.sub('[^a-zA-Z]', ' ', text)
-    p_text = p_text.lower()
-    p_text = p_text.split()
-    p_text = [lemmatizer.lemmatize(word)
-              for word in p_text if not word in set(stopwords)]
-    p_text = ' '.join(p_text)
+    if lang == 'en':
+        stopwords = nltk.corpus.stopwords.words('english')
+        lemmatizer = WordNetLemmatizer()
+
+        p_text = re.sub('[^a-zA-Z]', ' ', text)
+        p_text = p_text.lower()
+        p_text = p_text.split()
+        p_text = [lemmatizer.lemmatize(word)
+                  for word in p_text if not word in set(stopwords)]
+        p_text = ' '.join(p_text)
+    elif lang == 'id':
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+        p_text = text.translate(str.maketrans(
+            '', '', string.punctuation)).lower()
+        tokens = word_tokenize(p_text)
+        list_stopwords = set(nltk.corpus.stopwords.words('indonesian'))
+        removed = []
+        for t in tokens:
+            if t not in list_stopwords:
+                removed.append(t)
+        p_text = ' '.join(removed)
+        p_text = stemmer.stem(p_text)
 
     return p_text
 
@@ -71,3 +89,8 @@ def get_keywords(text, api=False):
         # print(keywords)
 
     return str(keywords)
+
+
+text = "Andi kerap melakukan transaksi rutin secara daring atau online. Menurut Andi belanja online lebih praktis & murah."
+p_text = preprocess_text(text, 'id')
+print(p_text)
