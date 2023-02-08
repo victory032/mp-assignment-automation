@@ -9,8 +9,8 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import string
 import openai
 
-# nltk.download('stopwords')
-# nltk.download('wordnet')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 
 def preprocess_text(text: str, lang: str = 'en') -> str:
@@ -64,7 +64,7 @@ def get_keywords(text: str, api_key: str = '', lang: str = 'en') -> list:
         list: top 5 keywords from the text input
     """
 
-    if api_key != '':
+    if api_key == '':
         api = False
     else:
         api = True
