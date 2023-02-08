@@ -23,9 +23,8 @@ st.write("""
          2. Generate new secret key
          3. Save and paste it here
          """)
-st.text('I will not store or even use your API Key.')
 
-api_key = st.text_input('API SECRET KEY: ', type='password')
+api_key = st.text_input('API SECRET KEY: ', type='password', key='api')
 
 st.write('----')
 
