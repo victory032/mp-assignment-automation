@@ -5,7 +5,7 @@ import streamlit as st
 # api_key = e.OPENAI_API_KEY
 
 
-@st.cache
+@st.experimental_memo
 def solve(text: str, api_key: str) -> list[str, list]:
     """This function is used to solve the question and sent request to openai api
 
