@@ -20,7 +20,7 @@ def solve(text: str) -> list[str, list]:
     keywords = key_gen.get_keywords(text, True)
 
     DESIGN_PROMPT_2 = f"""
-    Provide me detailed and related insight between keywords: 
+    Provide me detailed and related insight between keywords. Also summerize the output that you have got and bold the important information from your output: 
     """
     prompt2 = f"""
     The keywords are:
@@ -33,9 +33,9 @@ def solve(text: str) -> list[str, list]:
         model="text-davinci-003",
         prompt=final_prompt,
         temperature=0.3,
-        max_tokens=512,
+        max_tokens=1024,
         top_p=1,
-        frequency_penalty=0.5,
+        frequency_penalty=0.2,
         presence_penalty=0
     )
 
