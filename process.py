@@ -1,4 +1,3 @@
-import load_env as e
 import openai
 import keyword_generator as key_gen
 import streamlit as st
@@ -6,7 +5,7 @@ import streamlit as st
 # api_key = e.OPENAI_API_KEY
 
 
-@st.cache
+@st.experimental_memo
 def solve(text: str, api_key: str) -> list[str, list]:
     """This function is used to solve the question and sent request to openai api
 
@@ -18,10 +17,10 @@ def solve(text: str, api_key: str) -> list[str, list]:
         list[str, list]: The result contains response from openai api and keywords is a list containing keywords that is used in the prompt parameter api
     """
     # keywords = key_gen.get_keywords(text)
-    keywords = key_gen.get_keywords(text, True)
+    keywords = key_gen.get_keywords(text, api_key=api_key)
 
     DESIGN_PROMPT_2 = f"""
-    Provide me detailed and related insight between keywords. Also summerize the output that you have got and bold the important information from your output: 
+    Provide me detailed and related insight between keywords and summarize it. 
     """
     prompt2 = f"""
     The keywords are:
