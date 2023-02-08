@@ -3,15 +3,16 @@ import openai
 import keyword_generator as key_gen
 import streamlit as st
 
-openai.api_key = e.OPENAI_API_KEY
+# api_key = e.OPENAI_API_KEY
 
 
 @st.cache
-def solve(text: str) -> list[str, list]:
+def solve(text: str, api_key: str) -> list[str, list]:
     """This function is used to solve the question and sent request to openai api
 
     Args:
         text (str): raw text input
+        api_key (str): api secret key to send request to OpenAI API 
 
     Returns:
         list[str, list]: The result contains response from openai api and keywords is a list containing keywords that is used in the prompt parameter api
@@ -28,6 +29,8 @@ def solve(text: str) -> list[str, list]:
     """
 
     final_prompt = DESIGN_PROMPT_2 + prompt2
+
+    openai.api_key = api_key
 
     response = openai.Completion.create(
         model="text-davinci-003",
