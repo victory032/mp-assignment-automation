@@ -1,4 +1,3 @@
-import os
 import easyocr
 import streamlit as st
 

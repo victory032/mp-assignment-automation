@@ -7,9 +7,7 @@ from collections import Counter
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 import string
-import load_env as e
 import openai
-openai.api_key = e.OPENAI_API_KEY
 
 # nltk.download('stopwords')
 # nltk.download('wordnet')
@@ -54,19 +52,25 @@ def preprocess_text(text: str, lang: str = 'en') -> str:
     return p_text
 
 
-def get_keywords(text: str, api: bool = False, lang: str = 'en') -> list:
+def get_keywords(text: str, api_key: str = '', lang: str = 'en') -> list:
     """This function will be used to get the keywords from the preprocessed text
 
     Args:
         text (str): raw text | unpreprocessed text
-        api (bool, optional): If the parameter is set to True, it will generate keywords with api api. Defaults to False.
+        api (str, optional): This is the api key secret to send request to openai API. If there are no api provided, the function will use term frequency method to find keywords. Defaults to ''.
         lang (str, optional): Language to do preprocessing of the text input. Defaults to False.
 
     Returns:
         list: top 5 keywords from the text input
     """
 
+    if api_key != '':
+        api = False
+    else:
+        api = True
+
     if api:
+
         prompt = "Find the most useful terms in this text below. Only print out the terms. \n\n" + text
 
         response = openai.Completion.create(
