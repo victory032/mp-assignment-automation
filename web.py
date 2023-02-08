@@ -3,8 +3,9 @@ import streamlit as st
 import input
 from process import solve
 
-st.title('Assignment Automation')
+sidebar.sidebar()
 
+st.title('Assignment Automation')
 
 # intro section
 st.markdown('## Introduction')
@@ -42,39 +43,45 @@ with col1:
     # Select Input -> Parse Section
     res = ''
     keywords = None
-    text_input = ''
+    text = ''
+    file = None
+    clicked = False
 
     if genre == 'PDF':
         # pdf input section
-        pdf = st.file_uploader(
+        file = st.file_uploader(
             label="Upload your assignment PDF here.", type=['pdf'])
 
-        if pdf != None:
+        if file != None:
             # function read pdf
-            text_list = input.read_pdf(pdf)
+            text_list = input.read_pdf(file)
             text = ''.join(str(e+'\n') for e in text_list)
-            text_input = st.text_area("Your Question", value=text, height=400)
 
     elif genre == 'Image':
-        img = st.file_uploader(
+        file = st.file_uploader(
             label="Upload your assignment image here.", type=['jpeg', 'jpg', 'png'])
 
-        if img != None:
-            img_val = img.getvalue()
+        if file != None:
+            img_val = file.getvalue()
             st.write('Your Image')
             st.image(image=img_val)
             text_list = input.read_image(img_val)
             text = ''.join(str(e+'\n') for e in text_list)
-            text_input = st.text_area("Your Question", value=text, height=400)
 
-    else:
-        # text input section
-        text_input = st.text_area(
-            "Copy and paste your assignment's question here.", height=400)
+    if file != None or genre == 'Text':
+        text_input = st.text_area("Your Question", value=text, height=400)
 
-    clicked = False
+    # disabled the button
+    st.session_state.disabled = True
+
     # Run Process
-    if st.button('Solve Question!') and text_input != '':
+    if text_input != '':
+        st.session_state.disabled = False
+
+    solve_button = st.button(
+        'Solve Question!', key='but_solve', disabled=st.session_state.get('disabled'))
+
+    if solve_button and text_input != '':
         res, keywords = solve(text_input)
         clicked = True
         st.success('Done!')
