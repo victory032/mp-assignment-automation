@@ -20,7 +20,7 @@ def solve(text: str, api_key: str) -> list[str, list]:
     keywords = key_gen.get_keywords(text, api_key=api_key)
 
     DESIGN_PROMPT_2 = f"""
-    Provide me detailed and related insight between keywords. Also summarize it. 
+    Provide me detailed and related insight between keywords and summarize it. 
     """
     prompt2 = f"""
     The keywords are:
