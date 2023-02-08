@@ -70,11 +70,8 @@ def get_keywords(text: str, api_key: str = '', lang: str = 'en') -> list:
         api = True
 
     if api:
-
-        print('pake api')
-
+        openai.api_key = api_key
         prompt = "Find the most useful terms in this text below. Only print out the terms. \n\n" + text
-
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt=prompt,
@@ -88,9 +85,6 @@ def get_keywords(text: str, api_key: str = '', lang: str = 'en') -> list:
         keywords = response['choices'][0]['text']
 
     else:
-
-        print('ga pake api')
-
         text = preprocess_text(text, lang)
         term_frequencies = Counter(text.split())
         potential_words = term_frequencies.most_common()[:5]
