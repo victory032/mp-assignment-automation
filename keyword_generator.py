@@ -72,7 +72,7 @@ def get_keywords(text: str, api_key: str = '', lang: str = 'en') -> list:
     if api:
         openai.api_key = api_key
         prompt = "Find the most useful terms in " + lang + \
-            " language from this text below. Only print out the terms. \n\n" + text
+            " language from this text. Only print out the terms. These are the texts: \n\n" + text
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt=prompt,
