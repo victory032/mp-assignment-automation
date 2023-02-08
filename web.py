@@ -24,7 +24,7 @@ st.write("""
          3. Save and paste it here
          """)
 
-api_key = st.text_input('API SECRET KEY: ', type='password', key='api')
+api_key = st.text_input('API SECRET KEY: ', key='api')
 
 st.write('----')
 
