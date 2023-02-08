@@ -12,7 +12,7 @@ Assignment Automation is a student project designed to demonstrate the power of 
 
 ## Technical Outline
 
-![outline](docs/img/technical_outline.png)
+![outline](docs/img/technical_outline_updated.png)
 
 - Use Optical Character Recognition (OCR) software to convert the PDF or image documents into text. (PDF Text-based/Image/Text available)
 - Extract the text from the PDF/Image with PyPDF (PDF) / EasyOCR (Image)
