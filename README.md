@@ -31,15 +31,15 @@ I will provide documentation on my journey to solve this project. For those of y
 
 ### There are few limits on this project
 
-Maybe you can improve the project by forking, doing pr, or even create your own version.
+Maybe you can improve the project by forking, doing pr, or even creating your version.
 Here are the limits:
-- Unreliable prompt -> the generated output from this project isn't reliable. It's because I designed the prompt to submit as minimum as possible tokens.
+- Unreliable prompt -> the generated output from this project isn't reliable. It's because I designed the prompt to submit as minimum tokens as possible.
 - PDF Input -> the pdf input is reliable only if you put the PDF Text-based file type, please refer to my progress for more detailed information about pdf types.
-- Limited language -> only available in indonesian and english input.
+- Limited language -> only available in Indonesian and English input.
 
-Another Thoughts:
-- You can improve the prompt by making a input types ['exact question', 'insights', 'summarization']
-- Or maybe you can design the project to add custom prompt feature
+Other Thoughts:
+- You can improve the prompt by making input types ['exact question', 'insights', 'summarization']
+- Or maybe you can design the project to add the custom prompt feature
 
 ## Example Process and Output
 
