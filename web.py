@@ -10,7 +10,9 @@ st.title('Assignment Automation')
 # intro section
 st.markdown('## Introduction')
 st.write("""
-Assignment Automation offers answers to complex questions, saving users time and effort. You just need to input your question in pdf, image, or texts format and it will provide you a brief insights about the question.
+Assignment Automation offers answers to complex questions, saving users time and effort. You just need to input your question in pdf, image, or texts format and it will provide you a brief insights about the question. 
+
+Basically, this is a free homework solver.
 
 Note: **This project is for educational purposes only and the generated output may not be correct. Use at your own risk ⚠️.**
 """)
