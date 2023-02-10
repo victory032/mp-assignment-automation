@@ -6,7 +6,7 @@ import streamlit as st
 
 
 @st.experimental_memo
-def solve(text: str, api_key: str) -> list[str, list]:
+def solve(text: str, api_key: str, lang='english') -> list[str, list]:
     """This function is used to solve the question and sent request to openai api
 
     Args:
@@ -17,10 +17,10 @@ def solve(text: str, api_key: str) -> list[str, list]:
         list[str, list]: The result contains response from openai api and keywords is a list containing keywords that is used in the prompt parameter api
     """
     # keywords = key_gen.get_keywords(text)
-    keywords = key_gen.get_keywords(text, api_key=api_key)
+    keywords = key_gen.get_keywords(text, api_key=api_key, lang=lang)
 
     DESIGN_PROMPT_2 = f"""
-    Provide me detailed and related insight between keywords and summarize it. 
+    Provide me detailed and related insight between keywords and summarize it. Provide all output using {lang} language. 
     """
     prompt2 = f"""
     The keywords are:
