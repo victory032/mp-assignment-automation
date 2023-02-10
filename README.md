@@ -36,6 +36,7 @@ Here are the limits:
 - Unreliable prompt -> the generated output from this project isn't reliable. It's because I designed the prompt to submit as minimum tokens as possible.
 - PDF Input -> the pdf input is reliable only if you put the PDF Text-based file type, please refer to my progress for more detailed information about pdf types.
 - Limited language -> only available in Indonesian and English input.
+- No error handling -> if the code fails to execute (request error, etc), it has no error handling.
 
 Other Thoughts:
 - You can improve the prompt by making input types ['exact question', 'insights', 'summarization']
