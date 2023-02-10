@@ -45,12 +45,6 @@ with col1:
         "Choose your language input",
         ('English', 'Indonesia'), horizontal=True)
 
-    if lang != '':
-        if lang == 'English':
-            lang = 'en'
-        else:
-            lang = 'in'
-
     # topic = st.text_input('Add Topic', placeholder='')
 
     # Select Input -> Parse Section
@@ -95,7 +89,7 @@ with col1:
         'Solve Question!', key='but_solve', disabled=st.session_state.get('disabled'))
 
     if solve_button and text_input != '':
-        res, keywords = solve(text_input, api_key)
+        res, keywords = solve(text_input, api_key, lang=lang)
         clicked = True
         st.success('Done!')
 

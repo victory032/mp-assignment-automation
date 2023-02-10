@@ -52,7 +52,7 @@ def preprocess_text(text: str, lang: str = 'en') -> str:
     return p_text
 
 
-def get_keywords(text: str, api_key: str = '', lang: str = 'en') -> list:
+def get_keywords(text: str, api_key: str = '', lang: str = 'english') -> list:
     """This function will be used to get the keywords from the preprocessed text
 
     Args:
