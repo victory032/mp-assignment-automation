@@ -39,17 +39,11 @@ with col1:
 
     genre = st.radio(
         "Choose your assignment file type",
-        ('PDF', 'Image', 'Text'), horizontal=True)
+        ('PDF', 'Image', 'Image (URL)', 'Text'), horizontal=True)
 
     lang = st.radio(
         "Choose your language input",
         ('English', 'Indonesia'), horizontal=True)
-
-    if lang != '':
-        if lang == 'English':
-            lang = 'en'
-        else:
-            lang = 'in'
 
     # topic = st.text_input('Add Topic', placeholder='')
 
@@ -81,10 +75,20 @@ with col1:
             text_list = input.read_image(img_val)
             text = ''.join(str(e+'\n') for e in text_list)
 
+    elif genre == 'Image (URL)':
+        file = st.text_input('Paste your image url here.')
+
+        if file != '':
+            img_val = file
+            st.write('Your Image')
+            st.image(image=img_val)
+            text_list = input.read_image(img_val)
+            text = ''.join(str(e+'\n') for e in text_list)
+
     # disabled the button
     st.session_state.disabled = True
 
-    if file != None or genre == 'Text':
+    if (file != None and file != '') or genre == 'Text':
         text_input = st.text_area("Your Question", value=text, height=400)
         # Run Process
         if text_input != '' and api_key != '':
@@ -95,7 +99,7 @@ with col1:
         'Solve Question!', key='but_solve', disabled=st.session_state.get('disabled'))
 
     if solve_button and text_input != '':
-        res, keywords = solve(text_input, api_key)
+        res, keywords = solve(text_input, api_key, lang=lang)
         clicked = True
         st.success('Done!')
 
