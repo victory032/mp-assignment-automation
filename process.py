@@ -6,7 +6,7 @@ import streamlit as st
 
 
 @st.experimental_memo
-def solve(text: str, api_key: str, lang='english') -> list[str, list]:
+def solve(text: str, api_key: str, lang='english') -> list[str, str]:
     """This function is used to solve the question and sent request to openai api
 
     Args:
